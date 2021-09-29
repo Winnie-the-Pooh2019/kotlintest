@@ -1,8 +1,10 @@
 fun main(args: Array<String>) {
-    
-    val input = readLine()
 
-    val list = input!!.split(" ")
+    val list: List<String> = if (args.isEmpty())
+        readLine()!!.split(" ")
+    else
+        args.toList()
+
     val argsPairs = list.toHashSet().mapTo(ArrayList()) { Pair(it, list.count { s -> s == it }) }
 
     argsPairs.sortedWith { l, r ->

@@ -1,16 +1,14 @@
 fun main(args: Array<String>) {
 
-    val list: List<String> = if (args.isEmpty())
-        readLine()!!.split(" ")
+    if (args.isEmpty()) {
+        val str = readLine()
+        if (str != "")
+            echo(str!!.split(" "))
+    }
     else
-        args.toList()
+        echo(args.toList())
+}
 
-    val argsPairs = list.toHashSet().mapTo(ArrayList()) { Pair(it, list.count { s -> s == it }) }
-
-    argsPairs.sortedWith { l, r ->
-        if (l.second == r.second)
-            l.first.compareTo(r.first)
-        else
-            r.second.compareTo(l.second)
-    }.forEach { println("${it.first} ${it.second}") }
+fun echo(array: List<String>) {
+    array.sorted().groupingBy { it }.eachCount().toList().sortedByDescending { it.second }.forEach { println("${it.first} ${it.second}") }
 }

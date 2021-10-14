@@ -1,5 +1,3 @@
 fun main(args: Array<String>) {
-    for (arg in args) {
-        println(arg)
-    }
+    args.forEach(::println)
 }

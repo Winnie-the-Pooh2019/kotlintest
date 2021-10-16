@@ -10,5 +10,5 @@ fun main(args: Array<String>) {
 }
 
 fun echo(array: List<String>) {
-    array.sorted().groupingBy { it }.eachCount().toList().sortedByDescending { it.second }.forEach { println("${it.first} ${it.second}") }
+    array.sorted().groupingBy { it }.eachCount().toList().sortedByDescending { it.second }.map { "${it.first} ${it.second}" }.forEach(::println)
 }

@@ -1,12 +1,12 @@
 fun main(args: Array<String>) {
 
-    if (args.isEmpty()) {
-        val str = readLine()
-        if (str != "")
-            echo(str!!.split(" "))
-    }
+    val list = if (args.isEmpty())
+        readLine()!!.split(" ")
     else
-        echo(args.toList())
+        args.toList()
+
+    if (list[0] != "")
+        echo(list)
 }
 
 fun echo(array: List<String>) {

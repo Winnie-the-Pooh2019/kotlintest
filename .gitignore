@@ -19,5 +19,5 @@ images/
 *.tar.gz
 *.rar
 
-# idea iml file
-kotlintest.iml
+# idea iml files
+*.iml

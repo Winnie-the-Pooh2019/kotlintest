@@ -21,3 +21,5 @@ images/
 
 # idea iml files
 *.iml
+
+./out/

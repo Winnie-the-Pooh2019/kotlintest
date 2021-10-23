@@ -22,4 +22,9 @@ images/
 # idea iml files
 *.iml
 
+# builded files
 ./out/
+
+# meta
+
+./src/META-INF

@@ -44,5 +44,5 @@ if [[ $count -gt 0 ]]
   else
     printf "Tests succeed\n"
 
-    exit 0
+    exit 1
   fi

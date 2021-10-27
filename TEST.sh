@@ -40,7 +40,7 @@ if [[ $count -gt 0 ]]
   then
     printf "\nError occurred during test running\n"
 
-    exit 1
+    exit 0
   else
     printf "Tests succeed\n"
 

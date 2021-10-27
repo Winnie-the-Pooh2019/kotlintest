@@ -77,9 +77,9 @@
 
 ## task6
 ### _Если вашему приложению из задания 5 не передано ни одного параметра, то считайте список слов для сортировки из стандартного потока ввода (stdin), чтобы ваше приложение дополнительно могло запускаться вот так:_
-> main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.echo "the quick brown fox jumps over the lazy dog" | java -jar yourapp.jar
+> echo "the quick brown fox jumps over the lazy dog" | java -jar yourapp.jar
 ### Пример вывода:
-> $ main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.main.kotlin.echo "the quick brown fox jumps over the lazy dog" | java -jar task6.jar  
+> $ echo "the quick brown fox jumps over the lazy dog" | java -jar task6.jar  
 > the 2  
 > brown 1  
 > dog 1  

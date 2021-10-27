@@ -12,6 +12,8 @@ expected[6]="the 2${n}brown 1${n}dog 1${n}fox 1${n}jumps 1${n}lazy 1${n}over 1${
 
 orig="the quick brown fox jumps over the lazy dog"
 
+count=0
+
 for i in 1 2 3 4 5 6
 do
   printf "task%s test running...\n" $i
@@ -20,16 +22,27 @@ do
 
   out="$(java -jar "task$i".jar $orig)"
 
-#  echo "!$out!"
-#  echo "!${expected[$i]}!"
-
-  if [[ "${expected[$i]}" == "$out" ]]; then
-        printf "\nTEST SUCCEED\n"
+  if [[ "${expected[$i]}" != "$out" ]]; then
+     printf "\ntest %d failed\n" $i
+    ((count++))
+  else
+    printf "\ntest %d passed\n" $i
   fi
 
-  printf "\nactual output:\n\n%s\n" "$out"
+  printf "\nactual output:\n%s\n" "$out"
 
-  echo -e "\nexpected output:\n"
+  echo -e "\nexpected output:"
   echo -e "${expected[$i]}"
   echo -e "\n"
 done
+
+if [[ $count -gt 0 ]]
+  then
+    printf "\nError occurred during test running\n"
+
+    exit 1
+  else
+    printf "Tests succeed\n"
+
+    exit 0
+  fi

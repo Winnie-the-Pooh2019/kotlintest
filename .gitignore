@@ -28,3 +28,5 @@ images/
 # meta
 
 ./src/META-INF
+/out/
+/src/META-INF/MANIFEST.MF

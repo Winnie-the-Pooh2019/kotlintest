@@ -7,5 +7,5 @@ interface IProvider {
     @Throws(NoSuchElementException::class)
     fun identityProvide(login: String, password: String): Boolean
 
-    fun authorityProvide(login: String, role: String): User?
+    fun authorityProvide(login: String, role: String): User
 }

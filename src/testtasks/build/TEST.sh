@@ -20,7 +20,7 @@ do
 
   printf "input: %s\n" "$orig"
 
-  out="$(java -jar "../../../task$i".jar $orig)"
+  out="$(java -jar "./task$i".jar $orig)"
 
   if [[ "${expected[$i]}" != "$out" ]]; then
      printf "\ntest %d failed\n" $i

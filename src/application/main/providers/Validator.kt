@@ -1,5 +1,6 @@
 package application.main.providers
 
+import application.main.userdata.Role
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -29,6 +30,10 @@ object Validator {
         val pattern = Pattern.compile("[0-9]*")
 
         return pattern.matcher(value).find()
+    }
+
+    fun validateRole(suspectedRole: String): Boolean {
+        return suspectedRole in Role.values().map { it.name }
     }
 
     fun validateResource(resource: String): Boolean {

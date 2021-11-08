@@ -8,7 +8,7 @@ import java.util.regex.Pattern
 
 object Validator {
     fun validateLogin(login: String): Boolean {
-        val pattern = Pattern.compile("[a-zA-Z0-9]*")
+        val pattern = Pattern.compile("^[a-zA-Z0-9]{1,20}$")
 
         return pattern.matcher(login).find()
     }
@@ -27,7 +27,7 @@ object Validator {
     }
 
     fun validateValue(value: String): Boolean {
-        val pattern = Pattern.compile("[0-9]*")
+        val pattern = Pattern.compile("^[0-9]+$")
 
         return pattern.matcher(value).find()
     }
@@ -37,7 +37,7 @@ object Validator {
     }
 
     fun validateResource(resource: String): Boolean {
-        val pattern = Pattern.compile("[a-zA-Z]{1,10}")
+        val pattern = Pattern.compile("^[a-zA-Z]{1,10}$")
 
         return resource.split(".").all { pattern.matcher(it).find() }
     }

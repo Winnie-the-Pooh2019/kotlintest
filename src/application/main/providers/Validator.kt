@@ -37,8 +37,8 @@ object Validator {
     }
 
     fun validateResource(resource: String): Boolean {
-        val pattern = Pattern.compile("(^[a-zA-Z]{1,10})\\.([a-zA-Z]{1,10}\\.)*([a-zA-Z]{1,10})\$")
+        val pattern = Pattern.compile("[a-zA-Z]{1,10}")
 
-        return pattern.matcher(resource).find()
+        return resource.split(".").all { pattern.matcher(it).find() }
     }
 }

@@ -30,3 +30,5 @@ images/
 ./src/META-INF
 /out/
 /src/META-INF/MANIFEST.MF
+
+./lib/

@@ -69,3 +69,11 @@ fun echo()
     val endDate: String?,
     val value: String?)
 ```
+5) объект ```Validator``` с методами валидации входных данных
+6) Аккаунтинг:
+* Интерфейс, описывающий методы для аккаутинга:
+```kotlin
+interface IAccountProvider {
+    //todo describe accounting methods
+}
+```

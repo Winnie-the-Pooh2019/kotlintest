@@ -1,19 +1,29 @@
 package application.main.providers
 
+import application.main.Input
 import application.main.User
+import application.main.providers.exitcodes.ExitCode
 import application.main.services.Encoder
 import application.main.services.UserService
 
 class IdentityProvider : IIdentityProvider {
     private val userService = UserService()
+    private val authProvider = AuthorityProvider()
 
-    override fun identityProvide(login: String, password: String): User? {
-        if (!Validator.validateLogin(login))
-            throw Exception("login don't match the pattern")
+    override fun identityProvide(input: Input): Pair<User, ExitCode> {
+        if (!Validator.validateLogin(input.login!!))
+            return Pair(User(), ExitCode.LOGIN_FORMAT_INCORRECT)
 
-        val gotDto = userService.findUserByLogin(login) ?: throw Exception("no such login")
-        val encodedPass = Encoder.encode(Encoder.encode(password) + gotDto.salt)
+        val gotDto = userService.findUserByLogin(input.login!!) ?: return Pair(User(), ExitCode.LOGIN_INCORRECT)
 
-        return if (encodedPass == gotDto.password) User(login) else null
+        val encodedPass = Encoder.encode(Encoder.encode(input.password!!) + gotDto.salt)
+
+        return if (encodedPass == gotDto.password) {
+            if (input.role != null && input.resource != null)
+                authProvider.resourceProvide(input)
+            else
+                Pair(User(input.login), ExitCode.SUCCESS)
+        } else
+            Pair(User(), ExitCode.PASSWORD_INCORRECT)
     }
 }

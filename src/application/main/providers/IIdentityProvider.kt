@@ -1,7 +1,9 @@
 package application.main.providers
 
+import application.main.Input
 import application.main.User
+import application.main.providers.exitcodes.ExitCode
 
 interface IIdentityProvider {
-    fun identityProvide(login: String, password: String): User?
+    fun identityProvide(input: Input): Pair<User, ExitCode>
 }

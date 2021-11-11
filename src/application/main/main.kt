@@ -1,63 +1,48 @@
 package application.main
 
 import application.main.providers.IdentityProvider
+import application.main.providers.exitcodes.ExitCode
+import kotlin.system.exitProcess
 
 fun main(args: Array<String>) {
+    if ("-h" in args) {
+        showFaq()
+        exitProcess(1)
+    }
+
+//    args.forEach(::println)
+
+    val input = Input(args)
+
+//    println("login = ${input.login} | ")
 
     val provider = IdentityProvider()
 
-    val userInput = args.toString().split(" ").toList()
+    val userToExit = if (input.login != null && input.password != null)
+        provider.identityProvide(input)
+    else
+        Pair(User(), ExitCode.HELP)
 
-    for (i in userInput) {
+    when (userToExit.second) {
+        ExitCode.ACCESS_DENIED -> exitProcess(ExitCode.ACCESS_DENIED.ordinal)
 
-        println("in loop")
-        if (args.contains("-login") && args.contains("-pass")) {
-            println("in if")
+        ExitCode.LOGIN_FORMAT_INCORRECT -> exitProcess((ExitCode.LOGIN_FORMAT_INCORRECT.ordinal))
 
-            val user = provider.identityProvide(
-                args[args.indexOf("-login") + 1],
-                args[args.indexOf("-pass") + 1]
-            )
+        ExitCode.LOGIN_INCORRECT -> exitProcess(ExitCode.LOGIN_INCORRECT.ordinal)
 
-            println(user)
-//            application.main.doLogin(args[args.indexOf("-login") + 1])
+        ExitCode.PASSWORD_INCORRECT -> exitProcess(ExitCode.PASSWORD_INCORRECT.ordinal)
+
+        ExitCode.ROLE_UNKNOWN -> exitProcess(ExitCode.ROLE_UNKNOWN.ordinal)
+
+        ExitCode.SUCCESS -> exitProcess(ExitCode.SUCCESS.ordinal)
+
+        ExitCode.SUSPICIOUS_ACTIVITY -> exitProcess(ExitCode.SUSPICIOUS_ACTIVITY.ordinal)
+
+        ExitCode.HELP -> {
+            showFaq()
+            exitProcess(ExitCode.HELP.ordinal)
         }
-
-//        if (args.contains("-pass")) {
-//            application.main.doPass(args[args.indexOf("-pass") + 1])
-//        }
-//
-//        if (args.contains("-res")) {
-//            application.main.doRes(args[args.indexOf("-res") + 1])
-//        }
-//
-//        if (args.contains("-role")) {
-//            application.main.doRole(args[args.indexOf("-role") + 1])
-//        }
-//
-//        if (args.contains("-ds")) {
-//            application.main.doDs(args[args.indexOf("-ds") + 1])
-//        }
-//
-//        if (args.contains("-de")) {
-//            application.main.doDe(args[args.indexOf("-de") + 1])
-//        }
-//
-//        if (args.contains("-val")) {
-//            application.main.doVal(args[args.indexOf("-val") + 1])
-//        }
-//
-//        if (args.contains("-h")) {
-//            application.main.showFaq()
-//        }
     }
-
-    println("success")
-
-//    val ress = listOf("A.B.C.DD", "A.BB", "CC.EDF.WASD", "A.B.C.D.E")
-//    val res = "A.B.C.D.E"
-//
-//    println(AuthorityProvider.isChild(res, ress))
 }
 
 fun showFaq() {
@@ -71,32 +56,4 @@ fun showFaq() {
                 "\n-val ' Число (целое) '" +
                 "\n-h ' Справка '"
     )
-}
-
-fun doLogin(i: Any) {
-    println(i)
-}
-
-fun doPass(i: Any) {
-    println(i)
-}
-
-fun doRes(i: Any) {
-    println(i)
-}
-
-fun doRole(i: Any) {
-    println(i)
-}
-
-fun doDs(i: Any) {
-    println(i)
-}
-
-fun doDe(i: Any) {
-    println(i)
-}
-
-fun doVal(i: Any) {
-    println(i)
 }

@@ -11,7 +11,12 @@ images/
 *.log
 
 # Package Files #
-*.jar
+task1.jar
+task2.jar
+task3.jar
+task4.jar
+task5.jar
+task6.jar
 *.war
 *.nar
 *.ear
@@ -30,5 +35,3 @@ images/
 ./src/META-INF
 /out/
 /src/META-INF/MANIFEST.MF
-
-./lib/

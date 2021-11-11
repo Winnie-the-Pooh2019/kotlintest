@@ -10,6 +10,6 @@ data class User(
     var resource: String? = null,
 
     var startDate: Date? = null,
-    var endTime: Date? = null,
-    var value: Int? = null
+    var endDate: Date? = null,
+    var volume: Int? = null
 )

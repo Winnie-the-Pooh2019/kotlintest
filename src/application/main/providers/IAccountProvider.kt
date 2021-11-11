@@ -1,7 +1,9 @@
 package application.main.providers
 
+import application.main.Input
 import application.main.User
+import application.main.providers.exitcodes.ExitCode
 
 interface IAccountProvider {
-    fun accountProvide(startDate: String, endDate: String, value: String): User?
+    fun accountProvide(input: Input): Pair<User, ExitCode>
 }

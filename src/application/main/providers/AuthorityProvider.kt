@@ -1,31 +1,37 @@
 package application.main.providers
 
+import application.main.Input
 import application.main.User
+import application.main.providers.exitcodes.ExitCode
 import application.main.services.AuthService
 import application.main.userdata.Role
 import java.util.regex.Pattern
 
 class AuthorityProvider : IAuthorityProvider {
     private val authService = AuthService()
+    private val accProvider = AccountProvider()
 
-    override fun resourceProvide(login: String, role: String, resource: String): User? {
-        if (!Validator.validateRole(role))
-            throw Exception("non-existing role")
+    override fun resourceProvide(input: Input): Pair<User, ExitCode> {
+        if (!Validator.validateRole(input.role!!))
+            return Pair(User(input.login), ExitCode.ROLE_UNKNOWN)
 
-        if (!Validator.validateResource(resource))
-            throw Exception("incorrect resource format")
+        if (!Validator.validateResource(input.resource!!))
+            return Pair(User(input.login), ExitCode.ACCESS_DENIED)
 
-        val resources = authService.findResByLoginAndRole(login, Role.valueOf(role))
+        val resources = authService.findResByLoginAndRole(input.login!!, Role.valueOf(input.role!!))
 
-        return  if (resources.isEmpty() || !isChild(resource, resources)) User(login, Role.valueOf(role), resource) else null
-    }
-
-    override fun resourceProvide(user: User): User? {
-        return resourceProvide(user.login!!, user.role!!.name, user.resource!!)
+        return if (resources.isEmpty() || isChild(input.resource!!, resources)) {
+            if (input.startDate != null && input.endDate != null && input.volume != null)
+                accProvider.accountProvide(input)
+            else
+                Pair(User(input.login, Role.valueOf(input.role!!), input.resource), ExitCode.SUCCESS)
+        } else
+            Pair(User(input.login), ExitCode.ACCESS_DENIED)
     }
 
     private fun isChild(resource: String, resources: List<String>): Boolean {
         return resources.any {
+            println("$resource | $it")
             val pattern = Pattern.compile("^$it(\\.[a-zA-Z]{1,10})*")
 
             return@any pattern.matcher(resource).find()

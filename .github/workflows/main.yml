@@ -22,10 +22,10 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
     - name: Grant execute permission for BUILD
-      run: chmod +x ./src/testtasks/build/BUILD.sh
+      run: chmod +x ./src/application/build/BUILD.sh
     - name: Grant execute permission for TEST
-      run: chmod +x ./src/testtasks/build/TEST.sh
+      run: chmod +x ./src/application/build/TEST.sh
     - name: Build with BUILD.sh
-      run: ./src/testtasks/build/BUILD.sh
+      run: ./src/application/build/BUILD.sh
     - name: Run tests with TEST.sh
-      run: ./src/testtasks/build/TEST.sh
+      run: ./src/application/build/TEST.sh

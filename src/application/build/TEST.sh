@@ -1,6 +1,6 @@
 #!/bin/bash
 
-expectedCodes=(0 0 3 2 4 0 0 5 6 6 0 0 7 7 7 7 1 1 1 1)
+expectedCodes=(0 0 3 2 4 0 0 5 6 6 0 0 7 7 7 7 0 0 0 0)
 
 declare -a input
 input[0]="-login Ivan -pass ivan1234"

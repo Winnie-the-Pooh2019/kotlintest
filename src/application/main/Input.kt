@@ -15,6 +15,6 @@ class Input(args: Array<String>) {
     val volume: String? by parser.option(ArgType.String, shortName = "vol", description = "resource volume")
 
     init {
-        parser.parse(args)
+        parser.parse(if (args.isEmpty()) arrayOf("-h") else args)
     }
 }

@@ -2,19 +2,12 @@ package application.main
 
 import application.main.providers.IdentityProvider
 import application.main.providers.exitcodes.ExitCode
+import kotlinx.cli.ArgParser
 import kotlin.system.exitProcess
 
 fun main(args: Array<String>) {
-    if ("-h" in args) {
-        showFaq()
-        exitProcess(1)
-    }
-
-//    args.forEach(::println)
 
     val input = Input(args)
-
-//    println("login = ${input.login} | ")
 
     val provider = IdentityProvider()
 
@@ -39,7 +32,7 @@ fun main(args: Array<String>) {
         ExitCode.SUSPICIOUS_ACTIVITY -> exitProcess(ExitCode.SUSPICIOUS_ACTIVITY.ordinal)
 
         ExitCode.HELP -> {
-            showFaq()
+//            showFaq()
             exitProcess(ExitCode.HELP.ordinal)
         }
     }

@@ -32,7 +32,6 @@ fun main(args: Array<String>) {
         ExitCode.SUSPICIOUS_ACTIVITY -> exitProcess(ExitCode.SUSPICIOUS_ACTIVITY.ordinal)
 
         ExitCode.HELP -> {
-//            showFaq()
             exitProcess(ExitCode.HELP.ordinal)
         }
     }

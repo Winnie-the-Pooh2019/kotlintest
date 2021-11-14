@@ -5,23 +5,21 @@ import application.main.userdata.storage.UserData
 
 class UserService {
 
-    private val userData: UserData = UserData()
-
     init {
-        for (i in userData.userNamesSupport.indices) {
-            insertUser(userData.userNamesSupport[i], userData.userPassSupport[i])
+        for (i in UserData.userNamesSupport.indices) {
+            insertUser(UserData.userNamesSupport[i], UserData.userPassSupport[i])
         }
     }
 
-    fun findUserByLogin(login: String): UserDTO? = userData.users.find { it.login == login }
+    fun findUserByLogin(login: String): UserDTO? = UserData.users.find { it.login == login }
 
     private fun insertUser(login: String, notEncodedPass: String) {
-        if (userData.users.any { it.login == login })
+        if (UserData.users.any { it.login == login })
             throw Exception("User with login: $login already exists in users' database")
 
         val salt = Encoder.saltGen()
 
-        userData.users.add(
+        UserData.users.add(
             UserDTO(
                 login,
                 Encoder.encode(Encoder.encode(notEncodedPass) + salt),

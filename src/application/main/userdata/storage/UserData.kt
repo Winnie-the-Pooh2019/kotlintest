@@ -1,6 +1,6 @@
 package application.main.userdata.storage
 
-class UserData {
+object UserData {
     val users = ArrayList<UserDTO>()
 
     val userNamesSupport = listOf(

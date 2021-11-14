@@ -16,23 +16,5 @@ fun main(args: Array<String>) {
     else
         Pair(User(), ExitCode.HELP)
 
-    when (userToExit.second) {
-        ExitCode.ACCESS_DENIED -> exitProcess(ExitCode.ACCESS_DENIED.ordinal)
-
-        ExitCode.LOGIN_FORMAT_INCORRECT -> exitProcess((ExitCode.LOGIN_FORMAT_INCORRECT.ordinal))
-
-        ExitCode.LOGIN_INCORRECT -> exitProcess(ExitCode.LOGIN_INCORRECT.ordinal)
-
-        ExitCode.PASSWORD_INCORRECT -> exitProcess(ExitCode.PASSWORD_INCORRECT.ordinal)
-
-        ExitCode.ROLE_UNKNOWN -> exitProcess(ExitCode.ROLE_UNKNOWN.ordinal)
-
-        ExitCode.SUCCESS -> exitProcess(ExitCode.SUCCESS.ordinal)
-
-        ExitCode.SUSPICIOUS_ACTIVITY -> exitProcess(ExitCode.SUSPICIOUS_ACTIVITY.ordinal)
-
-        ExitCode.HELP -> {
-            exitProcess(ExitCode.HELP.ordinal)
-        }
-    }
+    exitProcess(userToExit.second.code)
 }

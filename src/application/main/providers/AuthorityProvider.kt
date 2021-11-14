@@ -20,7 +20,7 @@ class AuthorityProvider {
 
         val resources = authService.findResByLoginAndRole(input.login!!, Role.valueOf(input.role!!))
 
-        return if (resources.isEmpty() || isChild(input.resource!!, resources)) {
+        return if (resources.isNotEmpty() || isChild(input.resource!!, resources)) {
             if (input.startDate != null && input.endDate != null && input.volume != null)
                 accProvider.accountProvide(input)
             else

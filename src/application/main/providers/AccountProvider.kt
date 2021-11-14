@@ -14,8 +14,7 @@ class AccountProvider {
 
         try {
             pairData = Validator.validateDates(input.startDate!!, input.endDate!!)
-        } catch (e: ParseException) {
-            e.printStackTrace()
+        } catch (e: Exception) {
             return Pair(User(input.login, Role.valueOf(input.role!!), input.resource), ExitCode.SUSPICIOUS_ACTIVITY)
         }
 

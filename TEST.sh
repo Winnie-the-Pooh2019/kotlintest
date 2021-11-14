@@ -40,11 +40,11 @@ for ((i = 0; i < 20; i++)); do
   echo $code
   echo "${expectedCodes[$i]}"
 
-  if [[ $code -gt expectedCodes[$i] ]]; then
+  if [[ "$code" == "${expectedCodes[$i]}" ]]; then
+    printf "\ntest %d passed\n" "$i"
+  else
     printf "\ntest %d failed\n" "$i"
     ((count++))
-  else
-    printf "\ntest %d passed\n" "$i"
   fi
 done
 

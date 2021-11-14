@@ -6,6 +6,9 @@ import kotlinx.cli.ArgType
 class Input(args: Array<String>) {
     private val parser = ArgParser("simple application")
 
+    /**
+     * nullable properties due to nullability parser invocation result
+     */
     val login: String? by parser.option(ArgType.String, shortName = "login", description = "user name")
     val password: String? by parser.option(ArgType.String, shortName = "pass", description = "user password")
     val role: String? by parser.option(ArgType.String, shortName = "role", description = "access level")

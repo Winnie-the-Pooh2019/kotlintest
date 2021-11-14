@@ -5,12 +5,12 @@ import application.main.User
 import application.main.providers.exitcodes.ExitCode
 import application.main.userdata.Role
 import java.text.ParseException
-import java.util.*
+import java.time.LocalDate
 
 class AccountProvider {
 
     fun accountProvide(input: Input): Pair<User, ExitCode> {
-        val pairData: Pair<Date, Date>
+        val pairData: Pair<LocalDate, LocalDate>
 
         try {
             pairData = Validator.validateDates(input.startDate!!, input.endDate!!)

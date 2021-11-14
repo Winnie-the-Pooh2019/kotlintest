@@ -1,7 +1,7 @@
 package application.main
 
 import application.main.userdata.Role
-import java.util.*
+import java.time.LocalDate
 
 data class User(
     var login: String? = null,
@@ -9,7 +9,7 @@ data class User(
     var role: Role? = null,
     var resource: String? = null,
 
-    var startDate: Date? = null,
-    var endDate: Date? = null,
+    var startDate: LocalDate? = null,
+    var endDate: LocalDate? = null,
     var volume: Int? = null
 )

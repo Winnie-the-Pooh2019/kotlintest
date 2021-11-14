@@ -4,7 +4,6 @@ import application.main.Input
 import application.main.User
 import application.main.providers.exitcodes.ExitCode
 import application.main.userdata.Role
-import java.text.ParseException
 import java.time.LocalDate
 
 class AccountProvider {

@@ -32,10 +32,6 @@ object Validator {
         return pattern.matcher(value).find()
     }
 
-    fun validateRole(suspectedRole: String): Boolean {
-        return suspectedRole in Role.values().map { it.name }
-    }
-
     fun validateResource(resource: String): Boolean {
         val pattern = Pattern.compile("^[a-zA-Z]{1,10}$")
 

@@ -12,7 +12,7 @@ class AuthorityProvider {
     private val accProvider = AccountProvider()
 
     fun resourceProvide(input: Input): Pair<User, ExitCode> {
-        if (!Validator.validateRole(input.role!!))
+        if (!Role.validateRole(input.role!!))
             return Pair(User(input.login), ExitCode.ROLE_UNKNOWN)
 
         if (!Validator.validateResource(input.resource!!))

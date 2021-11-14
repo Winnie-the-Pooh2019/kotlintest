@@ -2,7 +2,7 @@ package application.main.userdata.storage
 
 import application.main.userdata.Role
 
-class UserAuthData {
+object UserAuthData {
     val usersToRolesToRes = listOf(
         listOf("Ivan", Role.READ.name, "A.B.C"),
         listOf("Billy", Role.WRITE.name, "A.B"),

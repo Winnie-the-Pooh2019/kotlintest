@@ -7,11 +7,11 @@ import application.main.services.AuthService
 import application.main.userdata.Role
 import java.util.regex.Pattern
 
-class AuthorityProvider : IAuthorityProvider {
+class AuthorityProvider {
     private val authService = AuthService()
     private val accProvider = AccountProvider()
 
-    override fun resourceProvide(input: Input): Pair<User, ExitCode> {
+    fun resourceProvide(input: Input): Pair<User, ExitCode> {
         if (!Validator.validateRole(input.role!!))
             return Pair(User(input.login), ExitCode.ROLE_UNKNOWN)
 

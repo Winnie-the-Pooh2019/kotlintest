@@ -3,7 +3,7 @@ package application.main.services
 import application.main.userdata.storage.UserDTO
 import application.main.userdata.storage.UserData
 
-class UserService : IUserService {
+class UserService {
 
     private val userData: UserData = UserData()
 
@@ -13,12 +13,12 @@ class UserService : IUserService {
         }
     }
 
-    override fun findUserByLogin(login: String): UserDTO? {
+    fun findUserByLogin(login: String): UserDTO? {
 
         return userData.users.find { it.login == login }
     }
 
-    override fun insertUser(login: String, notEncodedPass: String) {
+    fun insertUser(login: String, notEncodedPass: String) {
         if (userData.users.any { it.login == login })
             throw Exception("User with login: $login already exists in users' database")
 
@@ -33,7 +33,7 @@ class UserService : IUserService {
         )
     }
 
-    override fun insertUser(userDTO: UserDTO) {
+    fun insertUser(userDTO: UserDTO) {
         if (findUserByLogin(userDTO.login) != null)
             throw Exception("User with login: ${userDTO.login} already exists in users' database")
 

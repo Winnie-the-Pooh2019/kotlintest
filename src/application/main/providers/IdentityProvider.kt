@@ -6,11 +6,11 @@ import application.main.providers.exitcodes.ExitCode
 import application.main.services.Encoder
 import application.main.services.UserService
 
-class IdentityProvider : IIdentityProvider {
+class IdentityProvider {
     private val userService = UserService()
     private val authProvider = AuthorityProvider()
 
-    override fun identityProvide(input: Input): Pair<User, ExitCode> {
+    fun identityProvide(input: Input): Pair<User, ExitCode> {
         if (!Validator.validateLogin(input.login!!))
             return Pair(User(), ExitCode.LOGIN_FORMAT_INCORRECT)
 

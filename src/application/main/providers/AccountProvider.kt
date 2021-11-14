@@ -7,9 +7,9 @@ import application.main.userdata.Role
 import java.text.ParseException
 import java.util.*
 
-class AccountProvider:IAccountProvider {
+class AccountProvider {
 
-    override fun accountProvide(input: Input): Pair<User, ExitCode> {
+    fun accountProvide(input: Input): Pair<User, ExitCode> {
         val pairData: Pair<Date, Date>
 
         try {

@@ -8,11 +8,11 @@ import java.util.*
 import java.util.regex.Pattern
 
 object Validator {
-    fun validateLogin(login: String): Boolean {
-        val pattern = Pattern.compile("^[a-zA-Z0-9]{1,20}$")
+    private val loginPattern = Pattern.compile("^[a-zA-Z0-9]{1,20}$")
+    private val valuePattern = Pattern.compile("^[0-9]+$")
+    private val resourcePattern = Pattern.compile("^[a-zA-Z]{1,10}$")
 
-        return pattern.matcher(login).find()
-    }
+    fun validateLogin(login: String) = loginPattern.matcher(login).find()
 
     fun validateDates(start: String, end: String): Pair<LocalDate, LocalDate> {
         val dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd")
@@ -26,15 +26,7 @@ object Validator {
         return Pair<LocalDate, LocalDate>(startTime, endTime)
     }
 
-    fun validateValue(value: String): Boolean {
-        val pattern = Pattern.compile("^[0-9]+$")
+    fun validateValue(value: String) = valuePattern.matcher(value).find()
 
-        return pattern.matcher(value).find()
-    }
-
-    fun validateResource(resource: String): Boolean {
-        val pattern = Pattern.compile("^[a-zA-Z]{1,10}$")
-
-        return resource.split(".").all { pattern.matcher(it).find() }
-    }
+    fun validateResource(resource: String) = resource.split(".").all { resourcePattern.matcher(it).find() }
 }

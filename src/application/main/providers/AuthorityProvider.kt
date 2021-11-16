@@ -12,19 +12,19 @@ class AuthorityProvider {
     private val accProvider = AccountProvider()
 
     fun resourceProvide(input: Input): Pair<User, ExitCode> {
-        if (!Role.validateRole(input.role!!))
+        if (!Role.validateRole(input.role))
             return Pair(User(input.login), ExitCode.ROLE_UNKNOWN)
 
-        if (!Validator.validateResource(input.resource!!))
+        if (!Validator.validateResource(input.resource))
             return Pair(User(input.login), ExitCode.ACCESS_DENIED)
 
-        val resources = authService.findResByLoginAndRole(input.login!!, Role.valueOf(input.role!!))
+        val resources = authService.findResByLoginAndRole(input.login, Role.valueOf(input.role))
 
-        return if (resources.isNotEmpty() || isChild(input.resource!!, resources)) {
-            if (input.startDate != null && input.endDate != null && input.volume != null)
+        return if (resources.isNotEmpty() || isChild(input.resource, resources)) {
+            if (input.startDate != "null" && input.endDate != "null" && input.volume != "null")
                 accProvider.accountProvide(input)
             else
-                Pair(User(input.login, Role.valueOf(input.role!!), input.resource), ExitCode.SUCCESS)
+                Pair(User(input.login, Role.valueOf(input.role), input.resource), ExitCode.SUCCESS)
         } else
             Pair(User(input.login), ExitCode.ACCESS_DENIED)
     }

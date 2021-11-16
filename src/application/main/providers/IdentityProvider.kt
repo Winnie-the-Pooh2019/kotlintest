@@ -11,15 +11,15 @@ class IdentityProvider {
     private val authProvider = AuthorityProvider()
 
     fun identityProvide(input: Input): Pair<User, ExitCode> {
-        if (!Validator.validateLogin(input.login!!))
+        if (!Validator.validateLogin(input.login))
             return Pair(User(), ExitCode.LOGIN_FORMAT_INCORRECT)
 
-        val gotDto = userService.findUserByLogin(input.login!!) ?: return Pair(User(), ExitCode.LOGIN_INCORRECT)
+        val gotDto = userService.findUserByLogin(input.login) ?: return Pair(User(), ExitCode.LOGIN_INCORRECT)
 
-        val encodedPass = Encoder.encode(Encoder.encode(input.password!!) + gotDto.salt)
+        val encodedPass = Encoder.encode(Encoder.encode(input.password) + gotDto.salt)
 
         return if (encodedPass == gotDto.password) {
-            if (input.role != null && input.resource != null)
+            if (input.role != "null" && input.resource != "null")
                 authProvider.resourceProvide(input)
             else
                 Pair(User(input.login), ExitCode.SUCCESS)

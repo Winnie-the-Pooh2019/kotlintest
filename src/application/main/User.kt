@@ -3,13 +3,19 @@ package application.main
 import application.main.userdata.Role
 import java.time.LocalDate
 
+/**
+ * @author Winnie-thePooh2019
+ *
+ * Совйства класса могут быть null, потому что объект User, возвращаемый методом
+ * identityProvide(), может быть заполненным не до конца
+ */
 data class User(
-    var login: String? = null,
+    val login: String? = null,
 
-    var role: Role? = null,
-    var resource: String? = null,
+    val role: Role? = null,
+    val resource: String? = null,
 
-    var startDate: LocalDate? = null,
-    var endDate: LocalDate? = null,
-    var volume: Int? = null
+    val startDate: LocalDate? = null,
+    val endDate: LocalDate? = null,
+    val volume: Int? = null
 )

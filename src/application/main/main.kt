@@ -4,7 +4,6 @@ import application.main.input.Input
 import application.main.providers.AccountProvider
 import application.main.providers.AuthorityProvider
 import application.main.providers.IdentityProvider
-import application.main.providers.exitcodes.ExitCode
 import kotlin.system.exitProcess
 
 fun main(args: Array<String>) {
@@ -15,10 +14,7 @@ fun main(args: Array<String>) {
     val authProvider = AuthorityProvider(accountProvider)
     val identityProvider = IdentityProvider(authProvider)
 
-    val userToExit = if (input.login != null && input.password != null)
-        identityProvider.provide(input)
-    else
-        User(status = ExitCode.HELP)
+    val userToExit = identityProvider.provide(input)
 
     exitProcess(userToExit.status.code)
 }

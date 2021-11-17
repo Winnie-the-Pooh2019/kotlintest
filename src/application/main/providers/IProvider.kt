@@ -1,6 +1,6 @@
 package application.main.providers
 
-import application.main.Input
+import application.main.input.Input
 import application.main.User
 
 interface IProvider {

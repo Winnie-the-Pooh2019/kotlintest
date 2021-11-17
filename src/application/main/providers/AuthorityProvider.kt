@@ -1,6 +1,6 @@
 package application.main.providers
 
-import application.main.Input
+import application.main.input.Input
 import application.main.User
 import application.main.providers.exitcodes.ExitCode
 import application.main.services.AuthService
@@ -20,19 +20,19 @@ class AuthorityProvider(private val provider: IProvider) : IProvider {
     }
 
     override fun provide(input: Input): User {
-        if (!Role.validateRole(input.role!!))
+        if (input.authInput == null)
+            return User(input.identityInput!!.login, status = ExitCode.OK)
+
+        if (!Role.validateRole(input.authInput.role))
             return User(input.login, status = ExitCode.ROLE_UNKNOWN)
 
         if (!Validator.validateResource(input.resource!!))
-            return User(input.login, status = ExitCode.ACCESS_DENIED)
+            return User(input.authInput.login, status = ExitCode.ACCESS_DENIED)
 
-        val resources = authService.findResByLoginAndRole(input.login!!, Role.valueOf(input.role!!))
+        val resources = authService.findResByLoginAndRole(input.authInput.login, Role.valueOf(input.authInput.role))
 
-        return if (resources.isNotEmpty() || isChild(input.resource!!, resources)) {
-            if (input.startDate != null && input.endDate != null && input.volume != null)
-                provider.provide(input)
-            else
-                User(input.login, Role.valueOf(input.role!!), input.resource, status = ExitCode.OK)
+        return if (resources.isNotEmpty() || isChild(input.authInput.resource, resources)) {
+            provider.provide(input)
         } else
             User(input.login, status = ExitCode.ACCESS_DENIED)
     }

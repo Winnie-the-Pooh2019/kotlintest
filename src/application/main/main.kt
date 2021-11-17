@@ -1,5 +1,6 @@
 package application.main
 
+import application.main.input.Input
 import application.main.providers.AccountProvider
 import application.main.providers.AuthorityProvider
 import application.main.providers.IdentityProvider

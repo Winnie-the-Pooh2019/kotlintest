@@ -1,6 +1,6 @@
 package application.main.providers
 
-import application.main.Input
+import application.main.input.Input
 import application.main.User
 import application.main.providers.exitcodes.ExitCode
 import application.main.services.Encoder
@@ -18,10 +18,7 @@ class IdentityProvider(private val provider: IProvider) : IProvider {
         val encodedPass = Encoder.encode(Encoder.encode(input.password!!) + gotDto.salt)
 
         return if (encodedPass == gotDto.password) {
-            if (input.role != null && input.resource != null)
-                provider.provide(input)
-            else
-                User(input.login, status = ExitCode.OK)
+            provider.provide(input)
         } else
             User(status = ExitCode.PASSWORD_INCORRECT)
     }

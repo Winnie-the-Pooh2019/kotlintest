@@ -1,4 +1,4 @@
-package application.main
+package application.main.input
 
 import kotlinx.cli.ArgParser
 import kotlinx.cli.ArgType
@@ -14,7 +14,15 @@ class Input(args: Array<String>) {
     val endDate: String? by parser.option(ArgType.String, shortName = "de", description = "using app finish time")
     val volume: String? by parser.option(ArgType.String, shortName = "vol", description = "resource volume")
 
+    val identityInput: IdentityInput?
+    val authInput: AuthInput?
+    val accountInput: AccountInput?
+
     init {
         parser.parse(if (args.isEmpty()) arrayOf("-h") else args)
+
+        identityInput = if (login != null && password != null) IdentityInput(login!!, password!!) else null
+        authInput = if (role != null && resource != null) AuthInput(login!!, role!!, resource!!) else null
+        accountInput = if (startDate != null && endDate != null && volume != null) AccountInput(startDate!!, endDate!!, volume!!) else null
     }
 }

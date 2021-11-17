@@ -23,6 +23,8 @@ class Input(args: Array<String>) {
         val endDate: String? by parser.option(ArgType.String, shortName = "de", description = "using app finish time")
         val volume: String? by parser.option(ArgType.String, shortName = "vol", description = "resource volume")
 
+        parser.parse(if (args.isEmpty()) arrayOf("-h") else args)
+
         this.login = login.toString()
         this.password = password.toString()
         this.role = role.toString()
@@ -30,7 +32,5 @@ class Input(args: Array<String>) {
         this.startDate = startDate.toString()
         this.endDate = endDate.toString()
         this.volume = volume.toString()
-
-        parser.parse(if (args.isEmpty()) arrayOf("-h") else args)
     }
 }

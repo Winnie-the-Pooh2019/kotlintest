@@ -27,6 +27,6 @@ class AccountProvider : IProvider {
             pairData.first,
             pairData.second,
             input.volume!!.toInt(),
-            ExitCode.SUCCESS)
+            ExitCode.OK)
     }
 }

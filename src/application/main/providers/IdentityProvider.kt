@@ -21,7 +21,7 @@ class IdentityProvider(private val provider: IProvider) : IProvider {
             if (input.role != null && input.resource != null)
                 provider.provide(input)
             else
-                User(input.login, status = ExitCode.SUCCESS)
+                User(input.login, status = ExitCode.OK)
         } else
             User(status = ExitCode.PASSWORD_INCORRECT)
     }

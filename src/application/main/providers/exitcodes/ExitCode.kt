@@ -1,7 +1,7 @@
 package application.main.providers.exitcodes
 
 enum class ExitCode(val code: Int) {
-    SUCCESS(0),
+    OK(0),
     HELP(1),
     LOGIN_FORMAT_INCORRECT(2),
     LOGIN_INCORRECT(3),

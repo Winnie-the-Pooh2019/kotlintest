@@ -32,7 +32,7 @@ class AuthorityProvider(private val provider: IProvider) : IProvider {
             if (input.startDate != null && input.endDate != null && input.volume != null)
                 provider.provide(input)
             else
-                User(input.login, Role.valueOf(input.role!!), input.resource, status = ExitCode.SUCCESS)
+                User(input.login, Role.valueOf(input.role!!), input.resource, status = ExitCode.OK)
         } else
             User(input.login, status = ExitCode.ACCESS_DENIED)
     }

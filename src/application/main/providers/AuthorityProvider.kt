@@ -7,27 +7,9 @@ import application.main.services.AuthService
 import application.main.userdata.Role
 import java.util.regex.Pattern
 
-class AuthorityProvider {
+class AuthorityProvider : IProvider {
     private val authService = AuthService()
     private val accProvider = AccountProvider()
-
-    fun resourceProvide(input: Input): Pair<User, ExitCode> {
-        if (!Role.validateRole(input.role))
-            return Pair(User(input.login), ExitCode.ROLE_UNKNOWN)
-
-        if (!Validator.validateResource(input.resource))
-            return Pair(User(input.login), ExitCode.ACCESS_DENIED)
-
-        val resources = authService.findResByLoginAndRole(input.login, Role.valueOf(input.role))
-
-        return if (resources.isNotEmpty() || isChild(input.resource, resources)) {
-            if (input.startDate != "null" && input.endDate != "null" && input.volume != "null")
-                accProvider.accountProvide(input)
-            else
-                Pair(User(input.login, Role.valueOf(input.role), input.resource), ExitCode.SUCCESS)
-        } else
-            Pair(User(input.login), ExitCode.ACCESS_DENIED)
-    }
 
     private fun isChild(resource: String, resources: List<String>): Boolean {
         return resources.any {
@@ -36,5 +18,23 @@ class AuthorityProvider {
 
             return@any pattern.matcher(resource).find()
         }
+    }
+
+    override fun provide(input: Input): User {
+        if (!Role.validateRole(input.role))
+            return User(input.login, status = ExitCode.ROLE_UNKNOWN)
+
+        if (!Validator.validateResource(input.resource))
+            return User(input.login, status = ExitCode.ACCESS_DENIED)
+
+        val resources = authService.findResByLoginAndRole(input.login, Role.valueOf(input.role))
+
+        return if (resources.isNotEmpty() || isChild(input.resource, resources)) {
+            if (input.startDate != "null" && input.endDate != "null" && input.volume != "null")
+                accProvider.provide(input)
+            else
+                User(input.login, Role.valueOf(input.role), input.resource, status = ExitCode.SUCCESS)
+        } else
+            User(input.login, status = ExitCode.ACCESS_DENIED)
     }
 }

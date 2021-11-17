@@ -1,5 +1,6 @@
 package application.main
 
+import application.main.providers.exitcodes.ExitCode
 import application.main.userdata.Role
 import java.time.LocalDate
 
@@ -17,5 +18,7 @@ data class User(
 
     val startDate: LocalDate? = null,
     val endDate: LocalDate? = null,
-    val volume: Int? = null
+    val volume: Int? = null,
+
+    val status: ExitCode
 )

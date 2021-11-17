@@ -6,27 +6,27 @@ import application.main.providers.exitcodes.ExitCode
 import application.main.userdata.Role
 import java.time.LocalDate
 
-class AccountProvider {
+class AccountProvider : IProvider {
 
-    fun accountProvide(input: Input): Pair<User, ExitCode> {
+    override fun provide(input: Input): User {
         val pairData: Pair<LocalDate, LocalDate>
 
         try {
             pairData = Validator.validateDates(input.startDate, input.endDate)
         } catch (e: Exception) {
-            return Pair(User(input.login, Role.valueOf(input.role), input.resource), ExitCode.SUSPICIOUS_ACTIVITY)
+            return User(input.login, Role.valueOf(input.role), input.resource, status = ExitCode.SUSPICIOUS_ACTIVITY)
         }
 
         if(!Validator.validateValue(input.volume))
-            return Pair(User(input.login, Role.valueOf(input.role), input.resource), ExitCode.SUSPICIOUS_ACTIVITY)
+            return User(input.login, Role.valueOf(input.role), input.resource, status = ExitCode.SUSPICIOUS_ACTIVITY)
 
-        return Pair(User(
+        return User(
             input.login,
             Role.valueOf(input.role),
             input.resource,
             pairData.first,
             pairData.second,
-            input.volume.toInt()
-        ), ExitCode.SUCCESS)
+            input.volume.toInt(),
+            ExitCode.SUCCESS)
     }
 }

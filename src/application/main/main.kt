@@ -11,9 +11,9 @@ fun main(args: Array<String>) {
     val provider = IdentityProvider()
 
     val userToExit = if (input.login != "null" && input.password != "null")
-        provider.identityProvide(input)
+        provider.provide(input)
     else
-        Pair(User(), ExitCode.HELP)
+        User(status = ExitCode.HELP)
 
-    exitProcess(userToExit.second.code)
+    exitProcess(userToExit.status.code)
 }

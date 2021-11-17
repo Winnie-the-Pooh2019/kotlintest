@@ -24,16 +24,16 @@ class AuthorityProvider(private val provider: IProvider) : IProvider {
             return User(input.identityInput!!.login, status = ExitCode.OK)
 
         if (!Role.validateRole(input.authInput.role))
-            return User(input.login, status = ExitCode.ROLE_UNKNOWN)
+            return User(status = ExitCode.ROLE_UNKNOWN)
 
-        if (!Validator.validateResource(input.resource!!))
-            return User(input.authInput.login, status = ExitCode.ACCESS_DENIED)
+        if (!Validator.validateResource(input.authInput.resource))
+            return User(status = ExitCode.ACCESS_DENIED)
 
         val resources = authService.findResByLoginAndRole(input.authInput.login, Role.valueOf(input.authInput.role))
 
         return if (resources.isNotEmpty() || isChild(input.authInput.resource, resources)) {
             provider.provide(input)
         } else
-            User(input.login, status = ExitCode.ACCESS_DENIED)
+            User(status = ExitCode.ACCESS_DENIED)
     }
 }

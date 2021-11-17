@@ -12,21 +12,21 @@ class AccountProvider : IProvider {
         val pairData: Pair<LocalDate, LocalDate>
 
         try {
-            pairData = Validator.validateDates(input.startDate, input.endDate)
+            pairData = Validator.validateDates(input.startDate!!, input.endDate!!)
         } catch (e: Exception) {
-            return User(input.login, Role.valueOf(input.role), input.resource, status = ExitCode.SUSPICIOUS_ACTIVITY)
+            return User(input.login, Role.valueOf(input.role!!), input.resource, status = ExitCode.SUSPICIOUS_ACTIVITY)
         }
 
-        if(!Validator.validateValue(input.volume))
-            return User(input.login, Role.valueOf(input.role), input.resource, status = ExitCode.SUSPICIOUS_ACTIVITY)
+        if(!Validator.validateValue(input.volume!!))
+            return User(input.login, Role.valueOf(input.role!!), input.resource, status = ExitCode.SUSPICIOUS_ACTIVITY)
 
         return User(
             input.login,
-            Role.valueOf(input.role),
+            Role.valueOf(input.role!!),
             input.resource,
             pairData.first,
             pairData.second,
-            input.volume.toInt(),
+            input.volume!!.toInt(),
             ExitCode.SUCCESS)
     }
 }

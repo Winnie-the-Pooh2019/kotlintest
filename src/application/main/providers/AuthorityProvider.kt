@@ -7,9 +7,8 @@ import application.main.services.AuthService
 import application.main.userdata.Role
 import java.util.regex.Pattern
 
-class AuthorityProvider : IProvider {
+class AuthorityProvider(private val provider: IProvider) : IProvider {
     private val authService = AuthService()
-    private val accProvider = AccountProvider()
 
     private fun isChild(resource: String, resources: List<String>): Boolean {
         return resources.any {
@@ -21,19 +20,19 @@ class AuthorityProvider : IProvider {
     }
 
     override fun provide(input: Input): User {
-        if (!Role.validateRole(input.role))
+        if (!Role.validateRole(input.role!!))
             return User(input.login, status = ExitCode.ROLE_UNKNOWN)
 
-        if (!Validator.validateResource(input.resource))
+        if (!Validator.validateResource(input.resource!!))
             return User(input.login, status = ExitCode.ACCESS_DENIED)
 
-        val resources = authService.findResByLoginAndRole(input.login, Role.valueOf(input.role))
+        val resources = authService.findResByLoginAndRole(input.login!!, Role.valueOf(input.role!!))
 
-        return if (resources.isNotEmpty() || isChild(input.resource, resources)) {
-            if (input.startDate != "null" && input.endDate != "null" && input.volume != "null")
-                accProvider.provide(input)
+        return if (resources.isNotEmpty() || isChild(input.resource!!, resources)) {
+            if (input.startDate != null && input.endDate != null && input.volume != null)
+                provider.provide(input)
             else
-                User(input.login, Role.valueOf(input.role), input.resource, status = ExitCode.SUCCESS)
+                User(input.login, Role.valueOf(input.role!!), input.resource, status = ExitCode.SUCCESS)
         } else
             User(input.login, status = ExitCode.ACCESS_DENIED)
     }

@@ -6,6 +6,7 @@ import java.time.LocalDate
 
 /**
  * @author Winnie-thePooh2019
+ * @author Ramzes184
  *
  * Совйства класса могут быть null, потому что объект User, возвращаемый методом
  * identityProvide(), может быть заполненным не до конца

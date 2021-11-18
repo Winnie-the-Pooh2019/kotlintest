@@ -1,6 +1,6 @@
 #!/bin/bash
 
-expectedCodes=(0 0 3 2 4 0 0 5 6 6 0 0 7 7 7 7 0 0 0 0)
+expectedCodes=(0 0 3 2 4 0 0 5 6 6 0 0 7 7 7 7 0 0 0 0 2 3 4 0 0 0 5 6 6 6 0 7 7 2 2)
 
 declare -a input
 input[0]="-login Ivan -pass ivan1234"
@@ -27,9 +27,31 @@ input[17]="-login Ivan -pass ivan1234 -h -role READ -res A.B.C -ds 2000-11-09 -d
 input[18]="-h"
 input[19]=""
 
+
+#Konstantines
+input[20]="-login X-X -pass XXX" #2
+input[21]="-login XXX -pass XXX" #3
+input[22]="-login jdoe -pass XXX" #4
+input[23]="-login jdoe -pass sup3rpaZZ" #0
+input[24]="-login jdoe -pass sup3rpaZZ -role READ -res a" #0
+input[25]="-login jdoe -pass sup3rpaZZ -role READ -res a.b" #0
+input[26]="aaa.jar -login jdoe -pass sup3rpaZZ -role XXX -res a.b" #5
+input[27]="-login jdoe -pass sup3rpaZZ -role READ -res XXX" #6
+input[28]="-login jdoe -pass sup3rpaZZ -role WRITE -res a" #6
+input[29]="-login jdoe -pass sup3rpaZZ -role WRITE -res a.bc" #6
+input[30]="-login jdoe -pass sup3rpaZZ -role READ -res a.b -ds 2015-01-01 -de 2015-12-31 -vol 100" #0
+input[31]="-login jdoe -pass sup3rpaZZ -role READ -res a.b -ds 01-01-2015 -de 2015-12-31 -vol 100" #7
+input[32]="-login jdoe -pass sup3rpaZZ -role READ -res a.b -ds 2015-01-01 -de 2015-12-31 -vol XXX" #7
+input[33]="-login X -pass X -role READ -res X -ds 2015-01-01 -de 2015-12-31 -vol XXX" #2
+input[34]="-login X -pass X -role READ -res X" #2
+
+
+
+
+
 count=0
 
-for ((i = 0; i < 20; i++)); do
+for ((i = 0; i < 35; i++)); do
   printf "test %s running...\n" "$i"
 
 #  java -jar "main".jar "${input[$i]}"

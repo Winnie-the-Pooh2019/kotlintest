@@ -1,6 +1,6 @@
 #!/bin/bash
 
-expectedCodes=(0 0 3 2 4 0 0 5 6 6 0 0 7 7 7 7 0 0 0 0 2 3 4 0 0 0 5 6 6 6 0 7 7 2 2)
+expectedCodes=(0 0 3 2 4 0 0 5 6 6 0 0 7 7 7 7 0 0 0 0 2 3 4 0 0 0 5 6 6 6 0 7 7 3 3)
 
 declare -a input
 input[0]="-login Ivan -pass ivan1234"
@@ -35,7 +35,7 @@ input[22]="-login jdoe -pass XXX" #4
 input[23]="-login jdoe -pass sup3rpaZZ" #0
 input[24]="-login jdoe -pass sup3rpaZZ -role READ -res a" #0
 input[25]="-login jdoe -pass sup3rpaZZ -role READ -res a.b" #0
-input[26]="aaa.jar -login jdoe -pass sup3rpaZZ -role XXX -res a.b" #5
+input[26]="-login jdoe -pass sup3rpaZZ -role XXX -res a.b" #5
 input[27]="-login jdoe -pass sup3rpaZZ -role READ -res XXX" #6
 input[28]="-login jdoe -pass sup3rpaZZ -role WRITE -res a" #6
 input[29]="-login jdoe -pass sup3rpaZZ -role WRITE -res a.bc" #6

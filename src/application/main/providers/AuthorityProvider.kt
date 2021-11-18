@@ -13,7 +13,7 @@ class AuthorityProvider(private val provider: IProvider) : IProvider {
     private fun isChild(resource: String, resources: List<String>): Boolean {
         return resources.any {
             println("$resource | $it")
-            val pattern = Pattern.compile("^$it(\\.[a-zA-Z]{1,10})*")
+            val pattern = Pattern.compile("^$it(\\.[a-zA-Z]{1,10})*$")
 
             return@any pattern.matcher(resource).find()
         }
@@ -31,7 +31,7 @@ class AuthorityProvider(private val provider: IProvider) : IProvider {
 
         val resources = authService.findResByLoginAndRole(input.authInput.login, Role.valueOf(input.authInput.role))
 
-        return if (resources.isNotEmpty() || isChild(input.authInput.resource, resources)) {
+        return if (isChild(input.authInput.resource, resources)) {
             provider.provide(input)
         } else
             User(status = ExitCode.ACCESS_DENIED)

@@ -9,8 +9,11 @@ import java.time.LocalDate
 class AccountProvider : IProvider {
 
     override fun provide(input: Input): User {
+        if (input.authInput == null)
+            return User(status = ExitCode.OK)
+
         if (input.accountInput == null)
-            return User(input.authInput!!.login, Role.valueOf(input.authInput.role), input.authInput.resource, status = ExitCode.OK)
+            return User(input.authInput.login, Role.valueOf(input.authInput.role), input.authInput.resource, status = ExitCode.OK)
 
         val pairData: Pair<LocalDate, LocalDate>
 
@@ -24,7 +27,7 @@ class AccountProvider : IProvider {
             return User(status = ExitCode.SUSPICIOUS_ACTIVITY)
 
         return User(
-            input.authInput!!.login,
+            input.authInput.login,
             Role.valueOf(input.authInput.role),
             input.authInput.resource,
             pairData.first,

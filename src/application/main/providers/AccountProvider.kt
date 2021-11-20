@@ -7,10 +7,7 @@ import java.time.LocalDate
 class AccountProvider : IProvider {
 
     override fun provide(input: Input): ExitCode {
-        if (input.authInput == null)
-            return ExitCode.OK
-
-        if (input.accountInput == null)
+        if (!input.accountInput.exists)
             return ExitCode.OK
 
         try {

@@ -11,7 +11,7 @@ class AuthorityProvider(private val provider: IProvider) : IProvider {
     private fun isChild(resource: String, resources: List<String>) = resources.any { resource.contains("$it.") || resource == it }
 
     override fun provide(input: Input): ExitCode {
-        if (input.authInput == null)
+        if (!input.authInput.exists)
             return ExitCode.OK
 
         if (!Role.validateRole(input.authInput.role))

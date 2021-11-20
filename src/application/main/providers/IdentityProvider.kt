@@ -9,7 +9,7 @@ class IdentityProvider(private val provider: IProvider) : IProvider {
     private val userService = UserService()
 
     override fun provide(input: Input): ExitCode {
-        if (input.identityInput == null)
+        if (!input.identityInput.exists)
             return ExitCode.OK
 
         if (!Validator.validateLogin(input.identityInput.login))

@@ -1,3 +1,3 @@
 package application.main.input
 
-data class AuthInput(val login: String, val role: String, val resource: String)
+data class AuthInput(val login: String = "", val role: String = "", val resource: String = "", val exists: Boolean = true)

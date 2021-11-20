@@ -1,4 +1,4 @@
-package application.main.input
+package application.main.domain
 
 import kotlinx.cli.ArgParser
 import kotlinx.cli.ArgType

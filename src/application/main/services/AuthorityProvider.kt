@@ -1,9 +1,8 @@
-package application.main.providers
+package application.main.services
 
-import application.main.input.Input
-import application.main.providers.exitcodes.ExitCode
-import application.main.services.AuthService
-import application.main.userdata.Role
+import application.main.domain.Input
+import application.main.domain.ExitCode
+import application.main.domain.Role
 
 class AuthorityProvider(private val provider: IProvider) : IProvider {
     private val authService = AuthService()

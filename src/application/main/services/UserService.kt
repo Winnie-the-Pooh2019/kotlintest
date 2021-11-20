@@ -1,7 +1,7 @@
 package application.main.services
 
-import application.main.userdata.storage.UserDTO
-import application.main.userdata.storage.UserData
+import application.main.dto.UserDTO
+import application.main.dto.UserData
 
 class UserService {
 

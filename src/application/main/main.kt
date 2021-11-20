@@ -1,9 +1,9 @@
 package application.main
 
-import application.main.input.Input
-import application.main.providers.AccountProvider
-import application.main.providers.AuthorityProvider
-import application.main.providers.IdentityProvider
+import application.main.domain.Input
+import application.main.services.AccountProvider
+import application.main.services.AuthorityProvider
+import application.main.services.IdentityProvider
 import kotlin.system.exitProcess
 
 fun main(args: Array<String>) {

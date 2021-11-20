@@ -1,4 +1,4 @@
-package application.main.userdata
+package application.main.domain
 
 enum class Role {
     READ,

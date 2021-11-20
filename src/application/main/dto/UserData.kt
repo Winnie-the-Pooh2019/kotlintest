@@ -1,4 +1,4 @@
-package application.main.userdata.storage
+package application.main.dto
 
 object UserData {
     val userToPass = listOf(

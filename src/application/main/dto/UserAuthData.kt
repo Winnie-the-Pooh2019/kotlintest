@@ -1,6 +1,6 @@
-package application.main.userdata.storage
+package application.main.dto
 
-import application.main.userdata.Role
+import application.main.domain.Role
 
 object UserAuthData {
     val usersToRolesToRes = listOf(
@@ -8,7 +8,7 @@ object UserAuthData {
         RoleResourceDTO("Billy", Role.WRITE, "A.B"),
         RoleResourceDTO("Koala", Role.EXECUTE, "A.B.C.D"),
         RoleResourceDTO("jdoe", Role.READ, "a"),
-        RoleResourceDTO("jdoe",Role.WRITE, "a.b"),
+        RoleResourceDTO("jdoe", Role.WRITE, "a.b"),
         RoleResourceDTO("jrow", Role.EXECUTE, "a.b.c"),
         RoleResourceDTO("jdoe", Role.EXECUTE, "a.bc")
     )

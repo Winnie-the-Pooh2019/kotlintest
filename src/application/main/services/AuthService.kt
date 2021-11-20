@@ -1,7 +1,7 @@
 package application.main.services
 
-import application.main.userdata.Role
-import application.main.userdata.storage.UserAuthData
+import application.main.domain.Role
+import application.main.dto.UserAuthData
 
 class AuthService {
     fun findResByLoginAndRole(login: String, role: Role): List<String> {

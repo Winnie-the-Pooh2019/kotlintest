@@ -1,9 +1,7 @@
-package application.main.providers
+package application.main.services
 
-import application.main.input.Input
-import application.main.providers.exitcodes.ExitCode
-import application.main.services.Encoder
-import application.main.services.UserService
+import application.main.domain.Input
+import application.main.domain.ExitCode
 
 class IdentityProvider(private val provider: IProvider) : IProvider {
     private val userService = UserService()

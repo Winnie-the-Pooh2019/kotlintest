@@ -2,12 +2,11 @@ package application.main.userdata.storage
 
 object UserData {
     val userToPass = listOf(
-        listOf("Ivan", "ivan1234"),
-        listOf("Billy", "billy1234"),
-        listOf("Koala", "koala1234"),
-        listOf("jdoe", "sup3rpaZZ"),
-        listOf("jrow", "Qweqrty12"),
-        listOf("xxx", "yyy")
-
+        UserDTO("Ivan", "ivan1234"),
+        UserDTO("Billy", "billy1234"),
+        UserDTO("Koala", "koala1234"),
+        UserDTO("jdoe", "sup3rpaZZ"),
+        UserDTO("jrow", "Qweqrty12"),
+        UserDTO("xxx", "yyy")
     )
 }

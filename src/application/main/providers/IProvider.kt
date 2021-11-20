@@ -1,8 +1,8 @@
 package application.main.providers
 
 import application.main.input.Input
-import application.main.User
+import application.main.providers.exitcodes.ExitCode
 
 interface IProvider {
-    fun provide(input: Input): User
+    fun provide(input: Input): ExitCode
 }

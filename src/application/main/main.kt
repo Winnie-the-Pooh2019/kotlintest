@@ -16,5 +16,5 @@ fun main(args: Array<String>) {
 
     val userToExit = identityProvider.provide(input)
 
-    exitProcess(userToExit.status.code)
+    exitProcess(userToExit.code)
 }

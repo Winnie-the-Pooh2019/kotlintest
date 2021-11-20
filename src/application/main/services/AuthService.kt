@@ -6,7 +6,7 @@ import application.main.userdata.storage.UserAuthData
 class AuthService {
     fun findResByLoginAndRole(login: String, role: Role): List<String> {
         return UserAuthData.usersToRolesToRes.filter {
-            it[0] == login && it[1] == role.name
-        }.map { it[2] }
+            it.login == login && it.role == role
+        }.map { it.resource }
     }
 }

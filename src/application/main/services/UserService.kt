@@ -6,9 +6,9 @@ import application.main.userdata.storage.UserData
 class UserService {
 
     fun findUserByLogin(login: String): UserDTO? {
-        val loginToPass = UserData.userToPass.find { login == it[0] } ?: return null
+        val loginToPass = UserData.userToPass.find { login == it.login } ?: return null
         val salt = Encoder.saltGen()
 
-        return UserDTO(loginToPass[0], Encoder.encode(Encoder.encode(loginToPass[1]) + salt), salt)
+        return UserDTO(loginToPass.password, Encoder.hash(loginToPass.password, salt), salt)
     }
 }

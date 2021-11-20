@@ -12,19 +12,19 @@ object Validator {
 
     fun validateLogin(login: String) = loginPattern.matcher(login).find()
 
-    fun validateDates(start: String, end: String): Pair<LocalDate, LocalDate> {
+    fun validateDates(start: String, end: String): Boolean {
         val dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd")
 
         val startTime = LocalDate.from(dtf.parse(start))
         val endTime = LocalDate.from(dtf.parse(end))
 
         if (startTime > endTime)
-            throw ParseException("dates don't meet the requirement", 0)
+            return false
 
-        return Pair<LocalDate, LocalDate>(startTime, endTime)
+        return true
     }
 
-    fun validateValue(value: String) = valuePattern.matcher(value).find()
+    fun validateValue(value: String) = valuePattern.matcher(value).matches()
 
-    fun validateResource(resource: String) = resource.split(".").all { resourcePattern.matcher(it).find() }
+    fun validateResource(resource: String) = resource.split(".").all { resourcePattern.matcher(it).matches() }
 }

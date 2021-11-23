@@ -6,7 +6,7 @@ import java.time.format.DateTimeParseException
 import java.util.regex.Pattern
 
 object Validator {
-    private val loginPattern = Pattern.compile("^[a-zA-Z0-9]{1,20}$") //(?=.*[a-zA-Z])(?=.*[0-9])(^[a-zA-Z0-9]{1,20}$)
+    private val loginPattern = Pattern.compile("^[a-zA-Z0-9]{1,20}$")
     private val valuePattern = Pattern.compile("^[0-9]+$")
     private val resourcePattern = Pattern.compile("^[a-zA-Z]{1,10}$")
 

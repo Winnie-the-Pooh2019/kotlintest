@@ -6,19 +6,12 @@ import application.main.domain.ExitCode
 class AccountProvider : IProvider {
 
     override fun provide(input: Input): ExitCode {
-        if (input.accountInput == null)
+        if (input.startDate == null || input.endDate == null || input.volume == null)
             return ExitCode.OK
 
-        try {
-            if (!Validator.validateDates(input.accountInput.startDate, input.accountInput.endDate))
-                return ExitCode.SUSPICIOUS_ACTIVITY
-        } catch (e: Exception) {
-            return ExitCode.SUSPICIOUS_ACTIVITY
-        }
-
-        if(!Validator.validateValue(input.accountInput.volume))
-            return ExitCode.SUSPICIOUS_ACTIVITY
-
-        return ExitCode.OK
+        return if (Validator.validateValue(input.volume) && Validator.validateDates(input.startDate, input.endDate))
+            ExitCode.OK
+        else
+            ExitCode.SUSPICIOUS_ACTIVITY
     }
 }

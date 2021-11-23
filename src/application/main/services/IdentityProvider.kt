@@ -5,15 +5,15 @@ import application.main.domain.ExitCode
 
 class IdentityProvider(private val provider: IProvider, private val userService: UserService) : IProvider {
     override fun provide(input: Input): ExitCode {
-        if (input.identityInput == null)
+        if (input.login == null || input.password == null)
             return ExitCode.OK
 
-        if (!Validator.validateLogin(input.identityInput.login))
+        if (!Validator.validateLogin(input.login))
             return ExitCode.LOGIN_FORMAT_INCORRECT
 
-        val gotDto = userService.findUserByLogin(input.identityInput.login) ?: return ExitCode.LOGIN_INCORRECT
+        val gotDto = userService.findUserByLogin(input.login) ?: return ExitCode.LOGIN_INCORRECT
 
-        val encodedPass = Encoder.hash(input.identityInput.password, gotDto.salt)
+        val encodedPass = Encoder.hash(input.password, gotDto.salt)
 
         return if (encodedPass == gotDto.password) {
             provider.provide(input)

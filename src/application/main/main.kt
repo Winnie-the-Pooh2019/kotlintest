@@ -6,7 +6,7 @@ import kotlin.system.exitProcess
 
 fun main(args: Array<String>) {
 
-    val input = Input(args)
+    val input = Input.parse(args)
 
     val accountProvider = AccountProvider()
     val authProvider = AuthorityProvider(accountProvider, AuthService())

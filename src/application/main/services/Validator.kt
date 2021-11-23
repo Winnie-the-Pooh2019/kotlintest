@@ -2,6 +2,7 @@ package application.main.services
 
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeParseException
 import java.util.regex.Pattern
 
 object Validator {
@@ -14,13 +15,14 @@ object Validator {
     fun validateDates(start: String, end: String): Boolean {
         val dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd")
 
-        val startTime = LocalDate.from(dtf.parse(start))
-        val endTime = LocalDate.from(dtf.parse(end))
+        return try {
+            val startTime = LocalDate.from(dtf.parse(start))
+            val endTime = LocalDate.from(dtf.parse(end))
 
-        if (startTime > endTime)
-            return false
-
-        return true
+            startTime <= endTime
+        } catch (dte: DateTimeParseException) {
+            false
+        }
     }
 
     fun validateValue(value: String) = valuePattern.matcher(value).matches()

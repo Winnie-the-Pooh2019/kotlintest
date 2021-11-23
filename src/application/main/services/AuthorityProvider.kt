@@ -8,19 +8,18 @@ class AuthorityProvider(private val provider: IProvider, private val authService
     private fun isChild(resource: String, resources: List<String>) = resources.any { resource.contains("$it.") || resource == it }
 
     override fun provide(input: Input): ExitCode {
-        if (input.authInput == null)
+        if (input.login == null || input.role == null || input.resource == null)
             return ExitCode.OK
 
-        if (!Role.validateRole(input.authInput.role))
+        if (!Role.validateRole(input.role))
             return ExitCode.ROLE_UNKNOWN
 
-        if (!Validator.validateResource(input.authInput.resource))
+        if (!Validator.validateResource(input.resource))
             return ExitCode.ACCESS_DENIED
 
-        val resources = authService.findResByLoginAndRole(input.authInput.login, Role.valueOf(input.authInput.role))
+        val resources = authService.findResByLoginAndRole(input.login, Role.valueOf(input.role))
 
-        println(isChild(input.authInput.resource, resources))
-        return if (isChild(input.authInput.resource, resources)) {
+        return if (isChild(input.resource, resources)) {
             provider.provide(input)
         } else
             ExitCode.ACCESS_DENIED

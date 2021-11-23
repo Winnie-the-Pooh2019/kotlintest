@@ -4,9 +4,7 @@ import application.main.domain.Input
 import application.main.domain.ExitCode
 import application.main.domain.Role
 
-class AuthorityProvider(private val provider: IProvider) : IProvider {
-    private val authService = AuthService()
-
+class AuthorityProvider(private val provider: IProvider, private val authService: AuthService) : IProvider {
     private fun isChild(resource: String, resources: List<String>) = resources.any { resource.contains("$it.") || resource == it }
 
     override fun provide(input: Input): ExitCode {

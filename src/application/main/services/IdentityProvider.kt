@@ -3,9 +3,7 @@ package application.main.services
 import application.main.domain.Input
 import application.main.domain.ExitCode
 
-class IdentityProvider(private val provider: IProvider) : IProvider {
-    private val userService = UserService()
-
+class IdentityProvider(private val provider: IProvider, private val userService: UserService) : IProvider {
     override fun provide(input: Input): ExitCode {
         if (!input.identityInput.exists)
             return ExitCode.OK

@@ -5,7 +5,7 @@ import application.main.domain.ExitCode
 
 class IdentityProvider(private val provider: IProvider, private val userService: UserService) : IProvider {
     override fun provide(input: Input): ExitCode {
-        if (!input.identityInput.exists)
+        if (input.identityInput == null)
             return ExitCode.OK
 
         if (!Validator.validateLogin(input.identityInput.login))

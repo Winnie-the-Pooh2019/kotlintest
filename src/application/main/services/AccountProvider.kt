@@ -6,7 +6,7 @@ import application.main.domain.ExitCode
 class AccountProvider : IProvider {
 
     override fun provide(input: Input): ExitCode {
-        if (!input.accountInput.exists)
+        if (input.accountInput == null)
             return ExitCode.OK
 
         try {

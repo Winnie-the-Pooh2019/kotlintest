@@ -4,7 +4,7 @@ import java.security.MessageDigest
 import kotlin.random.Random
 
 object Encoder {
-    fun hash(pass: String, salt: String) = encode(encode(pass) + salt)
+    fun encodePassword(pass: String, salt: String) = encode(encode(pass) + salt)
 
     fun saltGen(): String = Random.nextBytes(32).toHex()
 

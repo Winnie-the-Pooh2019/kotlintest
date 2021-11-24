@@ -9,6 +9,6 @@ class UserService {
         val loginToPass = UserData.userToPass.find { login == it.login } ?: return null
         val salt = Encoder.saltGen()
 
-        return UserDTO(loginToPass.password, Encoder.hash(loginToPass.password, salt), salt)
+        return UserDTO(loginToPass.password, Encoder.encodePassword(loginToPass.password, salt), salt)
     }
 }

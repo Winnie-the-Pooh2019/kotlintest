@@ -13,7 +13,7 @@ class IdentityProvider(private val provider: IProvider, private val userService:
 
         val gotDto = userService.findUserByLogin(input.login) ?: return ExitCode.LOGIN_INCORRECT
 
-        val encodedPass = Encoder.hash(input.password, gotDto.salt)
+        val encodedPass = Encoder.encodePassword(input.password, gotDto.salt)
 
         return if (encodedPass == gotDto.password) {
             provider.provide(input)

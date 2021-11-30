@@ -56,8 +56,8 @@ for ((i = 0; i < 35; i++)); do
 
   code=$?
   actual=$(cut -c 1-1 <<< ${input[$i]})
-  echo $code
-  echo "$actual"
+
+  printf "Actual exitcode is %s\n" "$actual"
 
   if [[ "$code" == "$actual" ]]; then
     printf "\ntest %d passed\n" "$i"

@@ -2,11 +2,11 @@
 
 [comment]: <> (![example workflow]&#40;https://github.com/Winnie-the-Pooh2019/kotlintest/actions/workflows/main.yml/badge.svg&#41;)
 
-[comment]: <> (---)
+---
 
-[comment]: <> (### [Первый план]&#40;./src/application/PLAN2.md&#41;)
+### [Первый план](./src/application/PLAN2.md)
 
-[comment]: <> (### [Второй план]&#40;./Roadmap2.md&#41;)
+### [Второй план](./Roadmap2.md)
 ---
 ## Инструкция по сборке:
 Чтобы собрать проект, необходимо собрать его через терминал в unix-подобной операционной системе

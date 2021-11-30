@@ -1,6 +1,6 @@
 ---
 
-[comment]: <> (![example workflow]&#40;https://github.com/Winnie-the-Pooh2019/kotlintest/actions/workflows/main.yml/badge.svg&#41;)
+
 
 ---
 

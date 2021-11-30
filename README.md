@@ -1,8 +1,8 @@
-# kotlintest
-### Решения задач теста
 ---
 ![example workflow](https://github.com/Winnie-the-Pooh2019/kotlintest/actions/workflows/main.yml/badge.svg)
 ---
+### [Первый план](./src/application/PLAN2.md)
+### [Второй план](./Roadmap2.md)
 ## Инструкция по компиляции и запуску:
   * Чтобы скомпилировать какой-либо из файлов используйте команду **kotlinc <_имя исходника_> -include-runtime -d <_имя полученного jar файла_>**
   * Для запуска используйте команду **java -jar <_имя jar файла_>**

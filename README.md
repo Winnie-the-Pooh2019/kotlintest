@@ -1,6 +1,6 @@
 kotlintest
 ---
-![example workflow](https://github.com/Winnie-the-Pooh2019/kotlintest/act..)
+![example workflow](https://github.com/Winnie-the-Pooh2019/kotlintest/actions/workflows/main.yml/badge.svg)
 
 ### [Сайт проекта](https://winnie-the-pooh2019.github.io/kotlintest/)
 

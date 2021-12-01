@@ -1,5 +1,7 @@
-Ссылки
+kotlintest
 ---
+![example workflow](https://github.com/Winnie-the-Pooh2019/kotlintest/act..)
+
 ### [Сайт проекта](https://winnie-the-pooh2019.github.io/kotlintest/)
 
 ### [Первый план](./src/application/PLAN2.md)

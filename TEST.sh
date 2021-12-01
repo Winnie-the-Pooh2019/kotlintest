@@ -52,7 +52,7 @@ count=0
 for ((i = 0; i < 35; i++)); do
   printf "test %s running...\n" "$i"
 
-  ./RUN.sh "$(cut -c 2- <<< ${input[$i]})"
+  ./RUN.sh $(cut -c 2- <<< ${input[$i]})
 
   code=$?
   actual=$(cut -c 1-1 <<< ${input[$i]})

@@ -2,13 +2,9 @@
 
 [-> план](./Roadmap3.md)
 
-<a name="step1"></a>
 1) - [ ] как подключить бд
-<a name="step2"></a>
 2) - [ ] как создать бд
-<a name="step3"></a>
 3) - [ ] выполнение ddl запросов (ddl - data definition language) (DDL служит для создания и модификации структуры БД, т.е. для создания/изменения/удаления таблиц и связей)
-<a name="step4"></a>
 4) - [ ] выполнение dml(data manipulation language)/crud(create read update delete) запросов, те как добавлять, извлекать, обновлять данные и тд
 
 ---

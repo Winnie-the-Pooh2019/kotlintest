@@ -68,16 +68,20 @@ DROP TABLE database_name;
 ```sql
 ALTER TABLE table_name
   ADD column_name column_definition;
-
+```
+```sql
 ALTER TABLE table_name
     MODIFY column_name column_type;
-
+```
+```sql
 ALTER TABLE table_name
     DROP COLUMN column_name;
-
+```
+```sql
 ALTER TABLE table_name
     ALTER COLUMN old_name RENAME TO new_name;
-
+```
+```sql
 ALTER TABLE table_name
     RENAME TO new_table_name;
 ```

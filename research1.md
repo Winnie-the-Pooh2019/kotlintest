@@ -23,6 +23,7 @@ dependencies {
 }
 ```
 * при помощи maven:
+
 ```xml
 <dependency>
     <groupId>com.h2database</groupId>

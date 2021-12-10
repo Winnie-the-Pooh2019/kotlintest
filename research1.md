@@ -91,6 +91,55 @@ TRUNCATE TABLE table_name;
 ```
 * RENAME - переименовывает таблицу/колонку и тд
 
+Ссылка на более [подробный материал](https://habr.com/en/post/255361/)
 
 ---
+
+[4)](#Как-готовить-водород?)
+DML - это группа операторов для манипуляции данными. С помощью этих операторов 
+мы можем добавлять, изменять, удалять и выгружать данные из базы, т.е. манипулировать ими.
+DML содержит следующие команды:
+* select - выборка данных, базовый синтаксис:
+```sql
+SELECT [DISTINCT] список_столбцов или * FROM источник WHERE фильтр ORDER BY выражение_сортировки
+```
+Для таблиц в случае сложных запросов можно задавать псевдонимы:
+```sql
+SELECT T.ID, T.NAME FROM TABLES AS T
+```
+Также выбранные данные можно сортировать по каким либо колонкам:
+```sql
+SELECT LastName, FirstName, Salary FROM Employees ORDER BY LastName, Salary <DESC>
+```
+Для того чтобы ограничить количество возвращаемых значений, используется команда TOP:
+```sql
+SELECT TOP 2 * FROM Employees
+```
+Можно фильтровать записи:
+```sql
+SELECT ID,LastName,FirstName,Salary FROM Employees WHERE DepartmentID=3 ORDER BY LastName,FirstName
+```
+Булевых операторов в языке SQL всего 3 – AND, OR и NOT
+Вместе с where могут использоваться дополнительные операторы:  
+between - проверяет на вхождение в диапазон
+```sql
+SELECT ID,Name,Salary FROM Employees WHERE Salary BETWEEN 2000 AND 3000
+```
+In - проверяет на вхождение в перечень
+```sql
+SELECT ID,Name,Salary FROM Employees WHERE PositionID IN(3,4)
+```
+Like - проверяет строки на соответствие шаблону
+спецсимволы для шаблонов: "_" (на его месте должен быть один символ) 
+и "%" (на его месте может стоять любое количество символов)
+```sql
+SELECT ID,LastName FROM Employees WHERE LastName LIKE '_етр%'
+```
+* insert - добавление новых данных
+* update - обновление данных
+* delete - удаление данных
+* merge - слияние данных
+
+---
+
 PS: возможна еще более подробная декомпозиция шагов в случае большого объема информации
